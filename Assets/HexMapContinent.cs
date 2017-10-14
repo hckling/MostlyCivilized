@@ -9,17 +9,22 @@ namespace Assets
         {
             base.GenerateMap();
 
+            int numContinents = 2;
+            int continentSpacing = 20;
 
-            int numberOfSplats = Random.Range(3, 6);
-
-            for (int i = 0; i < numberOfSplats; i++)
+            for (int c = 0; c < numContinents; c++)
             {
-                int range = Random.Range(3, 8);
-                int row = Random.Range(range, NumberOfRows - range);
-                int col = Random.Range(20, NumberOfColumns - 20);
+                int numberOfSplats = Random.Range(3, 6);
 
-                ElevateArea(col, row, range);
-            }
+                for (int i = 0; i < numberOfSplats; i++)
+                {
+                    int range = Random.Range(3, 8);
+                    int row = Random.Range(range, NumberOfRows - range);
+                    int col = Random.Range(20, NumberOfColumns - 20) + (c * continentSpacing);
+
+                    ElevateArea(col, row, range);
+                }
+            }            
 
             // Add lumpiness - Perlin noise?
             // Set mesh of tiles to correct type
